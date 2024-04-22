@@ -61,6 +61,12 @@ public class PlayerController : MonoBehaviour
 
     public void Die() // 게임 오브젝트가 비활성화 된다.
     {
+        // 자신의 게임 오브젝트를 비활성화
         gameObject.SetActive(false);
+
+        // 씬에 존재하는 GameManger 타입의 오브젝트를 찾아 가저오기
+        GameManager gameManager = FindAnyObjectByType<GameManager>();
+        //가져온 GameManger 오브젝트의 EndGame() 메서트를 찾아서 실행
+        gameManager.EndGame();
     }
 }
