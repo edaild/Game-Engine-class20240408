@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRigidBody;
     public float speed = 8f;
-    
+
+    public AudioSource playerAudio;
 
     // Start is called before the first frame update
     void Start()
     {
        playerRigidBody = GetComponent<Rigidbody>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,18 +52,14 @@ public class PlayerController : MonoBehaviour
         playerRigidBody.velocity = newVelocity;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Sound()
     {
-        if(collision.gameObject.tag == "feld1")
-        {
-            
-            print("필드 1 입니다.");
-        }
+        playerAudio.Play();
     }
-
 
     public void Die() // 게임 오브젝트가 비활성화 된다.
     {
+   
         // 자신의 게임 오브젝트를 비활성화
         gameObject.SetActive(false);
 

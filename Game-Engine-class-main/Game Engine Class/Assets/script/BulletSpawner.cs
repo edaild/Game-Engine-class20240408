@@ -11,13 +11,17 @@ public class BulletSpawner : MonoBehaviour
 
     private Transform target;
     private float spawnRate; // 생성 주기
-    private float timeAfterSpawn;   
+    private float timeAfterSpawn;
+
+   public AudioSource audioPlayer;
 
     void Start()
     {
             timeAfterSpawn = 0f;                                //timeterSpawn 0으로 초기화
             spawnRate= Random.Range(spawnRateMin, spawnRateMax);    //spawnRate 최소와 최대 사이 값 지정
             target = FindObjectOfType<PlayerController>().transform; // PlayerController transform 적용
+
+            audioPlayer = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -34,6 +38,9 @@ public class BulletSpawner : MonoBehaviour
 
             // 다음 탄환 생성 주기 값(spawnRate를 최소(0.5초) 최대(3.0초) 범위에서 랜덤 값으로 결정작업 진행
             spawnRate = Random.Range(spawnRateMin, spawnRateMax);
+
+            // 포탄 생성시 포탄 발사음 실행
+            audioPlayer.Play();
         }
     }
 }

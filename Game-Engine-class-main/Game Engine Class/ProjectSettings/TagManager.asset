@@ -6,6 +6,7 @@ TagManager:
   tags:
   - feld1
   - feld2
+  - Bullet
   layers:
   - Default
   - TransparentFX
